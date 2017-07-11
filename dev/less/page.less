@@ -1,5 +1,5 @@
 /* Code by zenliver */
-/* 项目名称 */
+/* 家的 */
 /* 分页样式 */
 
 // 首页
@@ -468,5 +468,346 @@
     @media (max-width: 991px) {
         padding-top: 10px;
         padding-bottom: 10px;
+    }
+}
+
+// 新闻详情页
+
+#news_detail_banner {
+    .page_banner {
+        position: relative;
+        .news_detail_banner_mask {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.61);
+        }
+        .container {
+            position: relative;
+        }
+        @media (max-width: 767px) {
+            background-position: 80%;
+        }
+    }
+}
+.news_detail_info {
+    text-align: center;
+    @media (min-width: 1200px) {
+        padding-top: 95px;
+    }
+    @media (min-width: 992px) and (max-width: 1199px) {
+        padding-top: 45px;
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        padding-top: 30px;
+    }
+    @media (max-width: 767px) {
+        padding-top: 15px;
+    }
+}
+.news_detail_cate {
+    span {
+        a {
+            color: #fff;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        & + span {
+            margin-left: 5px;
+            &:before {
+                content: "/";
+                color: #fff;
+                font-size: 12px;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+.news_detail_title {
+    color: #fff;
+    font-size: 36px;
+    line-height: 1.2em;
+    overflow: hidden;
+    @media (min-width: 1200px) {
+        margin: 20px 250px;
+        height: 86px;
+    }
+    @media (min-width: 992px) and (max-width: 1199px) {
+        font-size: 30px;
+        margin: 20px 150px;
+        height: 72px;
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        font-size: 24px;
+        margin: 15px 100px;
+        height: 58px;
+    }
+    @media (max-width: 767px) {
+        font-size: 18px;
+        margin: 10px 0;
+        height: 44px;
+    }
+}
+.news_detail_time {
+    line-height: 34px;
+    span {
+        padding: 10px 30px;
+        font-size: 12px;
+        line-height: 1em;
+        color: #3e3244;
+        background-color: #f1f1f1;
+        border-radius: 17px;
+        @media (max-width: 767px) {
+            padding: 5px 20px;
+            border-radius: 11px;
+        }
+    }
+}
+
+.news_detail_content {
+    padding: 100px 180px;
+    @media (max-width: 767px) {
+        padding: 40px 0;
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        padding: 40px 60px;
+    }
+    @media (min-width: 992px) and (max-width: 1199px) {
+        padding: 100px 100px;
+    }
+    p {
+        font-size: 16px;
+        line-height: 1.8em;
+        color: #888888;
+        margin-bottom: 0;
+        & + p {
+            margin-top: 30px;
+            @media (max-width: 767px) {
+                margin-top: 20px;
+            }
+        }
+        img {
+            max-width: 100%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    }
+}
+
+// 资质与认证页面
+
+.certification {
+    padding: 50px 100px;
+    @media (max-width: 767px) {
+        padding: 40px 0;
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        padding: 40px 40px;
+    }
+    @media (min-width: 992px) and (max-width: 1199px) {
+        padding: 50px 50px;
+    }
+}
+.certification_title {
+    font-size: 30px;
+    color: #333333;
+    text-align: center;
+    padding-bottom: 50px;
+    @media (max-width: 991px) {
+        padding-bottom: 40px;
+    }
+    @media (max-width: 767px) {
+        font-size: 20px;
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        font-size: 26px;
+    }
+}
+.certification_list {
+    .row {
+        .col-md-4 {
+            margin-bottom: 30px;
+            @media (max-width: 991px) {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+// OEM页面
+
+.oem_service {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    @media (max-width: 767px) {
+        padding: 40px 0;
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        padding: 40px 0;
+    }
+
+}
+.oem_service_title {
+    text-align: center;
+    font-size: 30px;
+    color: #333333;
+    @media (max-width: 767px) {
+        font-size: 20px;
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        font-size: 26px;
+    }
+}
+.oem_service_desc {
+    text-align: center;
+    font-size: 14px;
+    color: #888888;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    @media (max-width: 991px) {
+        padding-top: 15px;
+        padding-bottom: 40px;
+    }
+}
+.oem_service_list {
+    .row {
+        .col-md-6 {
+            margin-bottom: 33px;
+            @media (min-width: 768px) and (max-width: 1199px) {
+                margin-bottom: 30px;
+            }
+            @media (max-width: 767px) {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+// 联系我们页面
+
+.contact {
+    padding: 80px 80px;
+    @media (min-width: 992px) and (max-width: 1199px) {
+        padding: 40px 40px;
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        padding: 40px 20px;
+    }
+    @media (max-width: 767px) {
+        padding: 40px 0;
+    }
+}
+.contact_info {
+    margin-bottom: 50px;
+    @media (max-width: 1199px) {
+        margin-bottom: 30px;
+    }
+    .row {
+        .col-md-4 {
+            & + .col-md-4 {
+                @media (max-width: 767px) {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}
+.contact_info_title {
+    font-size: 16px;
+    color: #080808;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.contact_info_content {
+    p {
+        font-size: 16px;
+        line-height: 1.6em;
+        color: #666666;
+        text-align: center;
+    }
+}
+// 百度地图模块
+#contact_map_baidumap {
+    border: 2px solid #ccc;
+    height: 390px;
+    @media (max-width: 991px) {
+        // height: 400px;
+    }
+    span.BMap_Marker > div {
+        width: 24px !important;
+        height: 34px !important;
+    }
+    label.BMapLabel {
+        max-width: initial;
+        padding: 5px !important;
+        font-size: 16px !important;
+        left: 25px !important;
+        font-family: Arial, "Microsoft YaHei" !important;
+        @media (max-width: 767px) {
+            top: -60px !important;
+            left: -80px !important;
+            font-size: 14px !important;
+        }
+    }
+}
+
+// 代理页面
+
+.agent {
+    padding-top: 80px;
+    padding-bottom: 50px;
+    @media (min-width: 992px) and (max-width: 1199px) {
+        padding-top: 60px;
+        padding-bottom: 30px;
+    }
+    @media (max-width: 991px) {
+        padding-top: 40px;
+        padding-bottom: 20px;
+    }
+}
+.agent_title {
+    font-size: 24px;
+    color: #333333;
+    text-align: center;
+    padding-bottom: 50px;
+    @media (max-width: 991px) {
+        padding-bottom: 30px;
+    }
+}
+.agent_list {
+    .row {
+        margin-left: -7.5px;
+        margin-right: -7.5px;
+        .col-md-3 {
+            padding-left: 7.5px;
+            padding-right: 7.5px;
+        }
+    }
+}
+.agent_item_img {
+    img {
+        border: 2px solid #501b37;
+    }
+}
+.agent_item_title {
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+    line-height: 2em;
+    height: 56px;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    @media (max-width: 991px) {
+        margin-top: 10px;
+        margin-bottom: 20px;
     }
 }
