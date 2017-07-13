@@ -164,6 +164,22 @@ $(function () {
         // $(this).addClass("input_focus");
     });
 
+    // 案例列表页手机下 more 按钮效果
+    if (screenWidth < 768) {
+        if ($("li.case_cates_item").length > 8) {
+            $(".case_cates_more").show();
+
+            $(".case_cates_more").click(function () {
+                $(".case_cates_list").toggleClass("collapsed");
+                if ($(".case_cates_list").hasClass("collapsed")) {
+                    $(this).text("MORE...");
+                } else {
+                    $(this).text("LESS...");
+                }
+            });
+        }
+    }
+
 
     // sr动画
 
