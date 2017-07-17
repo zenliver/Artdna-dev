@@ -93,23 +93,25 @@ $(function () {
 
     // Pad竖屏以下多语言切换效果
     if (screenWidth < 992) {
-        $("#header .navbar_lang a.active").on("click",function () {
-            $(this).siblings().toggleClass("show");
+        $("#header .navbar_lang a.active").click(function () {
+            $("body").append('<div id="lang_switch_mask"></div>');
+            $(".navbar_lang_wrapper").clone().appendTo("body");
+            $("body > .navbar_lang_wrapper").wrap('<div id="lang_switch_clone"></div>');
         });
 
-        // 点击空白区域关闭其他语言
-        $(document).click(function (e) {
-            // console.log(e.target);
-            // console.log($(".navbar_lang_wrapper a.active img")[0]);
-            if (e.target != $(".navbar_lang_wrapper a.active img")[0]) {
-                $(".navbar_lang_wrapper a.active").siblings().removeClass("show");
-            }
+        $("body").on("click","#lang_switch_mask",function () {
+            $(this).remove();
+            $("#lang_switch_clone").remove();
+        });
+        $("body").on("click","#lang_switch_clone .navbar_lang_wrapper a.active",function () {
+            $("#lang_switch_mask").remove();
+            $("#lang_switch_clone").remove();
         });
 
     }
 
     // 首页swiper
-    var indexSlideSwiper = new Swiper ('#index_slides .swiper-container', {
+    var indexSlideSwiper = new Swiper('#index_slides .swiper-container', {
         // direction: 'vertical',
         // slidesPerView: 4,
         // spaceBetween: 50,
@@ -164,7 +166,13 @@ $(function () {
         // $(this).addClass("input_focus");
     });
 
-    // 案例列表页手机下 more 按钮效果
+    // 案例列表页：案例分类active效果
+    addActiveClass("case","case.html","li.case_cates_item a","li.case_cates_item","parents");
+
+    // 案例列表页：当前分类自动移动到第一个
+    $("li.case_cates_item.active").prependTo(".case_cates_list");
+
+    // 案例列表页：手机下 more 按钮效果
     if (screenWidth < 768) {
         if ($("li.case_cates_item").length > 8) {
             $(".case_cates_more").show();
@@ -180,6 +188,34 @@ $(function () {
         }
     }
 
+    // 产品列表页：一级分类切换效果
+    $(".products_cates_item_title").click(function () {
+        $(this).next().slideToggle(400);
+        $(this).parent().siblings().children(".products_cates_list_child").slideUp(400);
+    });
+
+    // 产品列表页：当前子分类active效果
+    addActiveClass("products","products.html",".products_cates_item_child a",".products_cates_item_child","parents");
+
+    // 产品列表页：当前一级分类自动显示
+    $(".products_cates_item_child.active").parent().slideDown(400);
+
+    // 产品详情页：手机下把产品小图移动到上面去
+    if (screenWidth < 768) {
+        $(".products_detail_smimg").insertBefore(".products_detail_specs");
+    }
+
+    // 产品详情页：点击产品小图切换大图
+    $(".products_detail_bigimg_item").eq(0).fadeIn(500); // 第一张大图默认显示
+
+    $(".products_detail_smimg_item_img").click(function () {
+        var smImgIndex = $(this).parents(".col-md-3").index();
+        $(".products_detail_bigimg_item").hide();
+        $(".products_detail_bigimg_item").eq(smImgIndex).fadeIn(500);
+
+        $(".products_detail_smimg_item").removeClass("active");
+        $(this).parent().addClass("active");
+    });
 
     // sr动画
 

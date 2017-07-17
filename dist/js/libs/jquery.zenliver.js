@@ -224,3 +224,48 @@ function headerFixedTop() {
         }
     });
 }
+
+// 通用active效果
+
+function addActiveClass(pageUrlKeyword,noActiveUrlKeyword,linksSelector,linksInItemSelector,method) {
+    var pageUrl = window.location.href;
+    var hostname = window.location.host;
+    console.log(hostname);
+    // var pagePathName = window.location.pathname;
+    var pagePathName = pageUrl.slice(hostname.length+8);
+    console.log(pagePathName);
+
+    if (pageUrl.indexOf(pageUrlKeyword) >= 0) {
+        var toBeActiveLinks = $(linksSelector);
+        var toBeActiveLinksUrls = new Array();
+        for (var i = 0; i < toBeActiveLinks.length; i++) {
+            toBeActiveLinksUrls[i] = toBeActiveLinks.eq(i).attr("href");
+            console.log(toBeActiveLinksUrls);
+        }
+        for (var n = 0; n < toBeActiveLinks.length; n++) {
+            if (toBeActiveLinksUrls[n].indexOf(pagePathName) >= 0) {
+                if (pagePathName != noActiveUrlKeyword) {
+                    // $(linksInItemSelector).removeClass("active");
+                    switch (method) {
+                        case "parents":
+                            $(linksSelector).eq(n).parents(linksInItemSelector).addClass("active");
+                            break;
+                        case "find":
+                            $(linksSelector).eq(n).find(linksInItemSelector).addClass("active");
+                            break;
+                        default:
+                            $(linksSelector).eq(n).parents(linksInItemSelector).addClass("active");
+                    }
+                    break;
+                }
+                else {
+                    // $(linksInItemSelector).removeClass("active");
+                }
+            }
+            else {
+                // $(linksInItemSelector).removeClass("active");
+            }
+        }
+    }
+
+}
