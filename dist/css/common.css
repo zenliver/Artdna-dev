@@ -379,11 +379,11 @@ ul {
   opacity: 1;
   width: 36px;
 }
-#lang_switch_clone .navbar_lang_wrapper a.lang_eng:after {
+#lang_switch_clone .navbar_lang_wrapper a.lang_en:after {
   content: "English";
   margin-left: 15px;
 }
-#lang_switch_clone .navbar_lang_wrapper a.lang_arb:after {
+#lang_switch_clone .navbar_lang_wrapper a.lang_ar:after {
   content: "عربي";
   margin-left: 15px;
 }
@@ -391,7 +391,7 @@ ul {
   content: "русский язык";
   margin-left: 15px;
 }
-#lang_switch_clone .navbar_lang_wrapper a.lang_spn:after {
+#lang_switch_clone .navbar_lang_wrapper a.lang_es:after {
   content: "El español";
   margin-left: 15px;
 }
@@ -462,6 +462,12 @@ ul {
   font-size: 12px;
   background-color: transparent;
   border-color: transparent;
+}
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+  color: #af4284;
 }
 .pagination > .active > a,
 .pagination > .active > a:focus,

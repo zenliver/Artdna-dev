@@ -227,12 +227,14 @@ function headerFixedTop() {
 
 // 通用active效果
 
-function addActiveClass(pageUrlKeyword,noActiveUrlKeyword,linksSelector,linksInItemSelector,method) {
+function addActiveClass(sitePath,pageUrlKeyword,noActiveUrlKeyword,linksSelector,linksInItemSelector,method) {
     var pageUrl = window.location.href;
     var hostname = window.location.host;
     console.log(hostname);
     // var pagePathName = window.location.pathname;
-    var pagePathName = pageUrl.slice(hostname.length+8);
+    var sitePathLength = sitePath.length;
+    console.log(sitePathLength);
+    var pagePathName = pageUrl.slice(hostname.length+7+sitePathLength);
     console.log(pagePathName);
 
     if (pageUrl.indexOf(pageUrlKeyword) >= 0) {
