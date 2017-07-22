@@ -230,10 +230,10 @@ function headerFixedTop() {
 function addActiveClass(sitePath,pageUrlKeyword,noActiveUrlKeyword,linksSelector,linksInItemSelector,method) {
     var pageUrl = window.location.href;
     var hostname = window.location.host;
-    console.log(hostname);
+    // console.log(hostname);
     // var pagePathName = window.location.pathname;
     var sitePathLength = sitePath.length;
-    console.log(sitePathLength);
+    // console.log(sitePathLength);
     var pagePathName = pageUrl.slice(hostname.length+7+sitePathLength);
     console.log(pagePathName);
 
@@ -242,7 +242,7 @@ function addActiveClass(sitePath,pageUrlKeyword,noActiveUrlKeyword,linksSelector
         var toBeActiveLinksUrls = new Array();
         for (var i = 0; i < toBeActiveLinks.length; i++) {
             toBeActiveLinksUrls[i] = toBeActiveLinks.eq(i).attr("href");
-            console.log(toBeActiveLinksUrls);
+            // console.log(toBeActiveLinksUrls);
         }
         for (var n = 0; n < toBeActiveLinks.length; n++) {
             if (toBeActiveLinksUrls[n].indexOf(pagePathName) >= 0) {
