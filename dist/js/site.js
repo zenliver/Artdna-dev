@@ -83,15 +83,15 @@ $(function () {
 
     // 多语言切换active效果
     var pageUrl = window.location.href;
-    if (pageUrl.indexOf("?lang=") < 0) {
+    if (pageUrl.indexOf("lang=") < 0 || pageUrl.indexOf("lang=en") >= 0) {
         $(".lang_en").addClass("active");
-    } else if (pageUrl.indexOf("?lang=ar") >= 0) {
+    } else if (pageUrl.indexOf("lang=ar") >= 0) {
         // $(".navbar_lang_wrapper a").removeClass("active");
         $(".lang_ar").addClass("active");
-    } else if (pageUrl.indexOf("?lang=ru") >= 0) {
+    } else if (pageUrl.indexOf("lang=ru") >= 0) {
         // $(".navbar_lang_wrapper a").removeClass("active");
         $(".lang_ru").addClass("active");
-    } else if (pageUrl.indexOf("?lang=es") >= 0) {
+    } else if (pageUrl.indexOf("lang=es") >= 0) {
         // $(".navbar_lang_wrapper a").removeClass("active");
         $(".lang_es").addClass("active");
     }
@@ -178,7 +178,7 @@ $(function () {
     });
 
     // 案例列表页：案例分类active效果
-    addActiveClass("/","case","case.html","li.case_cates_item a","li.case_cates_item","parents");
+    addActiveClass("/","/case/","/case/img.php/","li.case_cates_item a","li.case_cates_item","parents");
 
     // 案例列表页：当前分类自动移动到第一个
     $("li.case_cates_item.active").prependTo(".case_cates_list");
@@ -200,7 +200,7 @@ $(function () {
     }
 
     // 产品一级分类页：一级分类active效果
-    addActiveClass("/","products_cate","products_cate.html",".products_cates_item_title a",".products_cates_item_title","parents");
+    addActiveClass("/","/product/product.php","/product/",".products_cates_item_title a",".products_cates_item_title","parents");
 
     // 产品列表页：一级分类切换效果
     $(".products_cates_item_title").click(function () {
@@ -209,7 +209,7 @@ $(function () {
     });
 
     // 产品列表页：当前子分类active效果
-    addActiveClass("/","products","products.html",".products_cates_item_child a",".products_cates_item_child","parents");
+    addActiveClass("/","/product/product.php","/product/product.php/",".products_cates_item_child a",".products_cates_item_child","parents");
 
     // 产品列表页：当前一级分类自动显示
     $(".products_cates_item_child.active").parent().slideDown(400);

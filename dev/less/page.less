@@ -1147,12 +1147,19 @@ li.case_cates_item {
     padding-top: 15px;
     padding-bottom: 15px;
 }
-.products_detail_breadcrumb_nav {
+.products_detail_breadcrumb {
     a {
         font-size: 14px;
         line-height: 2em;
         color: #333333;
+        margin-left: 8px;
+        margin-right: 8px;
     }
+}
+.products_detail_breadcrumb_home:after {
+    content: ">";
+}
+.products_detail_breadcrumb_nav {
     &:before {
         content: "-";
         margin-left: 10px;
@@ -1229,10 +1236,20 @@ h1.products_detail_title {
 }
 ul.products_detail_specs_list {
     border: 1px solid #eee;
-}
-li.products_detail_specs_item {
-    & + li {
-        border-top: 1px solid #eee;
+    > li {
+        // 手动清除浮动 开始
+        &:before, &:after {
+            content: "";
+            display: table;
+        }
+        &:after {
+            clear: both;
+        }
+        *zoom:1;/*IE/7/6*/
+        // 手动清除浮动 结束
+        & + li {
+            border-top: 1px solid #eee;
+        }
     }
 }
 .products_detail_specs_item_name, .products_detail_specs_item_value {
