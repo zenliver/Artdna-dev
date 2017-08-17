@@ -130,9 +130,10 @@ function videoAutoResize(videoSelector,videoRatio) {
     });
 }
 
-// 限制图片显示的高度，防止上传的图片高度过大影响美观
-
-function setImgParentHeight(imgSelector,imgDesignRatio) {
+// 限制图片显示的高度，防止用户上传的图片尺寸各异导致显示错位
+    // imgPaddingSum 数值，为图片的父元素的左右padding之和，若图片没有padding则其值为0
+    // imgParentDesignRatio 数值，为图片的父元素的设计高宽比（高度/宽度）
+function setImgParentHeight(imgSelector,imgPaddingSum,imgParentDesignRatio) {
     $(window).load(function () {
         $(imgSelector).each(function () {
             var imgWidth=$(this).width();
@@ -140,7 +141,7 @@ function setImgParentHeight(imgSelector,imgDesignRatio) {
             $(this).parent().css({
                 "display": "block",
                 "overflow": "hidden",
-                "height": imgWidth*imgDesignRatio+"px"
+                "height": (imgWidth+imgPaddingSum)*imgParentDesignRatio+"px"
             });
         });
     });
@@ -148,19 +149,19 @@ function setImgParentHeight(imgSelector,imgDesignRatio) {
 
 // 鼠标滑过图片后图片放大
 
-function imgScale(imgSelector) {
+function imgScale(imgSelector,imgParentPaddingLRSum,imgParentPaddingTBSum) {
     $(imgSelector).each(function () {
         $(this).parent().css("display","block"); // 必须先设为display:block，否则如果img的父元素是a的话无法获取正确的宽高
     });
     $(window).load(function () {
         $(imgSelector).each(function () {
-            var imgParentElWidth = $(this).parent().width();
-            var imgParentElHeight = $(this).parent().height();
+            var imgParentWidth = $(this).parent().width()+imgParentPaddingLRSum;
+            var imgParentHeight = $(this).parent().height()+imgParentPaddingTBSum;
             $(this).mouseover(function () {
                 $(this).parent().css({
                     "overflow": "hidden",
-                    "max-width": (imgParentElWidth+1)+"px",
-                    "max-height": (imgParentElHeight+1)+"px"
+                    "max-width": (imgParentWidth+1)+"px",
+                    "max-height": (imgParentHeight+1)+"px"
                 });
                 $(this).addClass("scaleLarger");
             });

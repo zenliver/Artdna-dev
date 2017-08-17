@@ -426,41 +426,6 @@
     background-color: #fff;
   }
 }
-.news_item:first-child {
-  background-color: #fff;
-}
-@media (min-width: 768px) {
-  .news_item:first-child > .row > .col-md-3 {
-    width: 50%;
-  }
-}
-@media (min-width: 768px) {
-  .news_item:first-child > .row > .col-md-9 {
-    width: 50%;
-  }
-}
-.news_item:first-child > .row > .col-md-9 .news_item_info {
-  padding-top: 50px;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .news_item:first-child > .row > .col-md-9 .news_item_info {
-    padding-top: 30px;
-  }
-}
-@media (max-width: 767px) {
-  .news_item:first-child > .row > .col-md-9 .news_item_info {
-    padding-top: 0;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-  }
-}
-@media (min-width: 768px) {
-  .news_item:first-child > .row > .col-md-9 .news_item_info .news_item_desc {
-    max-height: 75px;
-    overflow: hidden;
-  }
-}
 .news_item + .news_item {
   margin-top: 50px;
 }
@@ -717,6 +682,17 @@
   .certification_list .row .col-md-4 {
     margin-bottom: 20px;
   }
+}
+.certification_item_title {
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+  height: 48px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+.certification_item_title a {
+  color: #333333;
 }
 .oem_service {
   padding-top: 50px;
@@ -1166,6 +1142,21 @@ li.case_cates_item a:after {
 .products_item_img a > img {
   border-radius: 5px;
 }
+@media (min-width: 1200px) {
+  .products_item_img a > img {
+    height: 192px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .products_item_img a > img {
+    height: 180px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .products_item_img a > img {
+    height: 142px;
+  }
+}
 .products_item_img a .products_item_img_mask {
   position: absolute;
   top: 0;
@@ -1196,9 +1187,11 @@ li.case_cates_item a:after {
 }
 .products_item_title {
   text-align: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 35px;
+  overflow: hidden;
+  line-height: 23px;
+  height: 46px;
 }
 @media (max-width: 991px) {
   .products_item_title {

@@ -196,6 +196,9 @@ ul {
             &.dropdown {
                 > a {
                     cursor: default;
+                    .caret {
+                        margin-left: 5px;
+                    }
                 }
                 &:hover {
                     .dropdown-menu {
@@ -521,14 +524,14 @@ ul {
     transition: opacity 0.5s ease;
 }
 .scaleLarger {
-    animation: scaleLarger 0.3s ease forwards;
+    animation: scaleLarger 0.5s ease forwards;
     // transform: scale(1.1);
-    // transition: transform 0.3s ease;
+    // transition: transform 0.5s ease;
 }
 .scaleDefault {
-    animation: scaleDefault 0.3s ease forwards;
+    animation: scaleDefault 0.5s ease forwards;
     // transform: scale(1);
-    // transition: transform 0.3s ease;
+    // transition: transform 0.5s ease;
 }
 @keyframes scaleLarger {
     0% {

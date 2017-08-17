@@ -199,8 +199,16 @@ $(function () {
         }
     }
 
+    // 新闻列表页：限制新闻封面图片显示的高度
+    setImgParentHeight(".news_item_img > a > img",0,0.7);
+
     // 产品一级分类页：一级分类active效果
     addActiveClass("/","/product/product.php","/product/",".products_cates_item_title a",".products_cates_item_title","parents");
+
+    // 产品一级分类页：PC下鼠标滑过图片放大效果
+    if (pageUrl.indexOf("&class3=") < 0 && screenWidth >= 1200) {
+        imgScale(".products_item_img a>img",70,70);
+    }
 
     // 产品列表页：一级分类切换效果
     $(".products_cates_item_title").click(function () {
@@ -213,6 +221,19 @@ $(function () {
 
     // 产品列表页：当前一级分类自动显示
     $(".products_cates_item_child.active").parent().slideDown(400);
+
+    // 产品列表页：手机下限制图片显示的高度避免显示错位
+    if (screenWidth < 768) {
+        if (pageUrl.indexOf("class2=54") >= 0) {
+            setImgParentHeight(".products_item_img > a > img",30,0.7101);
+        } else {
+            setImgParentHeight(".products_item_img > a > img",30,1.05);
+        }
+    } else {
+        if (pageUrl.indexOf("class2=54") >= 0) {
+            $("head").append('<style media="screen">@media(min-width:1200px){.products_item_img a>img{height:120px}}@media(min-width:992px) and (max-width:1199px){.products_item_img a>img{height:110px}}@media(min-width:768px) and (max-width:991px){.products_item_img a>img{height:86px}}</style>');
+        }
+    }
 
     // 产品详情页：手机下把产品小图移动到上面去
     if (screenWidth < 768) {

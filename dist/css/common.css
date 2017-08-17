@@ -203,6 +203,9 @@ ul {
   #header .navbar-nav > li.dropdown > a {
     cursor: default;
   }
+  #header .navbar-nav > li.dropdown > a .caret {
+    margin-left: 5px;
+  }
   #header .navbar-nav > li.dropdown:hover .dropdown-menu {
     display: block;
   }
@@ -509,10 +512,10 @@ ul {
   transition: opacity 0.5s ease;
 }
 .scaleLarger {
-  animation: scaleLarger 0.3s ease forwards;
+  animation: scaleLarger 0.5s ease forwards;
 }
 .scaleDefault {
-  animation: scaleDefault 0.3s ease forwards;
+  animation: scaleDefault 0.5s ease forwards;
 }
 @keyframes scaleLarger {
   0% {
