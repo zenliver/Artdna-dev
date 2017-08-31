@@ -178,7 +178,7 @@ $(function () {
     });
 
     // 案例列表页：案例分类active效果
-    addActiveClass("/","/case/","/case/img.php/","li.case_cates_item a","li.case_cates_item","parents");
+    addActiveClass("/","/case/img.php","class3=","/case/img.php/","li.case_cates_item a","li.case_cates_item","parents");
 
     // 案例列表页：当前分类自动移动到第一个
     $("li.case_cates_item.active").prependTo(".case_cates_list");
@@ -200,14 +200,14 @@ $(function () {
     }
 
     // 新闻列表页：限制新闻封面图片显示的高度
-    setImgParentHeight(".news_item_img > a > img",0,0.7);
+    setImgParentHeight(".news_item_img > a > img",0.7);
 
     // 产品一级分类页：一级分类active效果
-    addActiveClass("/","/product/product.php","/product/",".products_cates_item_title a",".products_cates_item_title","parents");
+    addActiveClass("/","/product/product.php","class2=","/product/",".products_cates_item_title a",".products_cates_item_title","parents");
 
     // 产品一级分类页：PC下鼠标滑过图片放大效果
     if (pageUrl.indexOf("&class3=") < 0 && screenWidth >= 1200) {
-        imgScale(".products_item_img a>img",70,70);
+        imgScale2(".products_item_img a>img",70,70);
     }
 
     // 产品列表页：一级分类切换效果
@@ -217,7 +217,7 @@ $(function () {
     });
 
     // 产品列表页：当前子分类active效果
-    addActiveClass("/","/product/product.php","/product/product.php/",".products_cates_item_child a",".products_cates_item_child","parents");
+    addActiveClass("/","/product/product.php","class3=","/product/product.php/",".products_cates_item_child a",".products_cates_item_child","parents");
 
     // 产品列表页：当前一级分类自动显示
     $(".products_cates_item_child.active").parent().slideDown(400);
@@ -225,9 +225,9 @@ $(function () {
     // 产品列表页：手机下限制图片显示的高度避免显示错位
     if (screenWidth < 768) {
         if (pageUrl.indexOf("class2=54") >= 0) {
-            setImgParentHeight(".products_item_img > a > img",30,0.7101);
+            setImgParentHeight(".products_item_img > a > img",0.71);
         } else {
-            setImgParentHeight(".products_item_img > a > img",30,1.05);
+            setImgParentHeight(".products_item_img > a > img",1.04);
         }
     } else {
         if (pageUrl.indexOf("class2=54") >= 0) {
@@ -251,6 +251,9 @@ $(function () {
         $(".products_detail_smimg_item").removeClass("active");
         $(this).parent().addClass("active");
     });
+
+    // 产品详情页：限制产品小图的高度防止显示错位
+    setImgParentHeight(".products_detail_smimg_item_img img",1.04);
 
     // sr动画
 

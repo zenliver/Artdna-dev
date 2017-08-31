@@ -131,48 +131,110 @@ function videoAutoResize(videoSelector,videoRatio) {
 }
 
 // 限制图片显示的高度，防止用户上传的图片尺寸各异导致显示错位
-    // imgPaddingSum 数值，为图片的父元素的左右padding之和，若图片没有padding则其值为0
-    // imgParentDesignRatio 数值，为图片的父元素的设计高宽比（高度/宽度）
-function setImgParentHeight(imgSelector,imgPaddingSum,imgParentDesignRatio) {
-    $(window).load(function () {
-        $(imgSelector).each(function () {
-            var imgWidth=$(this).width();
-            console.log(imgWidth);
-            $(this).parent().css({
-                "display": "block",
-                "overflow": "hidden",
-                "height": (imgWidth+imgPaddingSum)*imgParentDesignRatio+"px"
+
+    // 方法一：因给图片嵌套了一个新的div，可能会导致图片的某些样式失效（用 > 一级子元素选择器写的样式会失效）
+        // imgDesignRatio 数值，为图片的设计高宽比（高度/宽度）
+    function setImgParentHeight(imgSelector,imgDesignRatio) {
+        $(window).load(function () {
+            $(imgSelector).each(function () {
+                $(this).wrap('<div class="set_img_parent_height_wrapper"></div>');
+                var imgWidth = $(this).width();
+                var imgHeight = $(this).height();
+                var imgDesignHeight = imgWidth*imgDesignRatio;
+                // console.log(imgWidth);
+                $(this).parent().css({
+                    "display": "block",
+                    "overflow": "hidden",
+                    "height": imgDesignHeight+"px"
+                });
+                $(this).css("margin-top",(imgDesignHeight-imgHeight)/2+"px"); // 若imgDesignHeight > imgHeight，margin-top为正值，图片将向下偏移以实现垂直居中；若imgDesignHeight < imgHeight，margin-top为负值，图片将向上偏移，这样图片恰好显示垂直方向中间的部分。
+
+                // if (imgHeight < imgDesignHeight) {
+                //
+                // }
+
             });
         });
-    });
-}
+    }
+
+    // 方法二：更麻烦，参数更多，但兼容性更好，没有图片样式失效的问题
+        // imgParentPaddingTBSum 数值，为图片的父元素上下padding之和，若图片上下没有padding则其值为0
+        // imgDesignRatio 数值，为图片的设计高宽比（高度/宽度）
+    function setImgParentHeight2(imgSelector,imgDesignRatio,imgParentPaddingTBSum) {
+        $(window).load(function () {
+            $(imgSelector).each(function () {
+                var imgWidth = $(this).width();
+                var imgHeight = $(this).height();
+                var imgDesignHeight = imgWidth*imgDesignRatio;
+                $(this).parent().css({
+                    "display": "block",
+                    "overflow": "hidden",
+                    "height": (imgDesignHeight+imgParentPaddingTBSum)+"px"
+                });
+                $(this).css("margin-top",(imgDesignHeight-imgHeight)/2+"px");
+            });
+        });
+    }
 
 // 鼠标滑过图片后图片放大
 
-function imgScale(imgSelector,imgParentPaddingLRSum,imgParentPaddingTBSum) {
-    $(imgSelector).each(function () {
-        $(this).parent().css("display","block"); // 必须先设为display:block，否则如果img的父元素是a的话无法获取正确的宽高
-    });
-    $(window).load(function () {
-        $(imgSelector).each(function () {
-            var imgParentWidth = $(this).parent().width()+imgParentPaddingLRSum;
-            var imgParentHeight = $(this).parent().height()+imgParentPaddingTBSum;
-            $(this).mouseover(function () {
-                $(this).parent().css({
-                    "overflow": "hidden",
-                    "max-width": (imgParentWidth+1)+"px",
-                    "max-height": (imgParentHeight+1)+"px"
-                });
-                $(this).addClass("scaleLarger");
-            });
-            $(this).mouseout(function () {
-                $(this).removeClass("scaleLarger");
-                $(this).animateOnce("scaleDefault");
-            });
-        });
+    // 方法一：参数最少，实现最简单，但因为给图片嵌套了一个新的div，可能会导致图片的某些样式失效（使用 > 直接子元素选择器的样式会失效）
 
-    });
-}
+    function imgScale(imgSelector) {
+        // $(imgSelector).each(function () {
+        //     $(this).parent().css("display","block"); // 必须先设为display:block，否则如果img的父元素是a的话无法获取正确的宽高
+        // });
+        $(window).load(function () {
+            $(imgSelector).each(function () {
+                $(this).wrap('<div class="img_scale_wrapper"></div>');
+                var imgWidth = $(this).width();
+                var imgHeight = $(this).height();
+                $(this).mouseover(function () {
+                    $(this).parent(".img_scale_wrapper").css({
+                        "overflow": "hidden",
+                        "max-width": (imgWidth+1)+"px",
+                        "max-height": (imgHeight+1)+"px"
+                    });
+                    $(this).addClass("scaleLarger");
+                });
+                $(this).mouseout(function () {
+                    $(this).removeClass("scaleLarger");
+                    $(this).animateOnce("scaleDefault");
+                });
+            });
+
+        });
+    }
+
+    // 方法二：参数多一些，更为麻烦，但兼容性更好，不会导致图片的样式失效
+        // imgParentPaddingLRSum 数值，图片的父元素左右padding之和
+        // imgParentPaddingTBSum 数值，图片的父元素上下padding之和
+
+    function imgScale2(imgSelector,imgParentPaddingLRSum,imgParentPaddingTBSum) {
+        // $(imgSelector).each(function () {
+        //     $(this).parent().css("display","block"); // 必须先设为display:block，否则如果img的父元素是a的话无法获取正确的宽高
+        // });
+        $(window).load(function () {
+            $(imgSelector).each(function () {
+                var imgParentWidth = $(this).width()+imgParentPaddingLRSum;
+                var imgParentHeight = $(this).height()+imgParentPaddingTBSum;
+                $(this).mouseover(function () {
+                    $(this).parent().css({
+                        "display": "block",
+                        "overflow": "hidden",
+                        "max-width": (imgParentWidth+1)+"px",
+                        "max-height": (imgParentHeight+1)+"px"
+                    });
+                    $(this).addClass("scaleLarger");
+                });
+                $(this).mouseout(function () {
+                    $(this).removeClass("scaleLarger");
+                    $(this).animateOnce("scaleDefault");
+                });
+            });
+
+        });
+    }
 
 // 返回顶部
 
@@ -227,8 +289,14 @@ function headerFixedTop() {
 }
 
 // 通用active效果
+    // sitePath：字符串，为站点所在的目录，如果是根目录，则为"/"，如果是在/test目录下，则为"/test/"
+    // pageUrlKeyword1, pageUrlKeyword2：字符串，此函数只在url中同时存在这两个字符串的情况下才执行，之所以设定两个关键词参数是为了确保可以准确定位，不至于扩大函数的执行范围。
+    // noActiveUrlKeyword：字符串，当函数中的pagePathName的值恰好等于这个字符串时函数将不发挥作用，即不会添加active效果，即在url满足此条件时将不会添加active效果。
+    // linksSelector：字符串，待跟页面url进行比对的链接 a 的选择器。
+    // activeItemSelector：字符串，待添加 active class 的元素的选择器。
+    // method：字符串，添加active class 的方法，指的是 activeItemSelector 相对于 linksSelector 的关系，若是父级元素则取值"parents"，若是子代元素则取值"find"。
 
-function addActiveClass(sitePath,pageUrlKeyword,noActiveUrlKeyword,linksSelector,linksInItemSelector,method) {
+function addActiveClass(sitePath,pageUrlKeyword1,pageUrlKeyword2,noActiveUrlKeyword,linksSelector,activeItemSelector,method) {
     var pageUrl = window.location.href;
     var hostname = window.location.host;
     // console.log(hostname);
@@ -238,7 +306,7 @@ function addActiveClass(sitePath,pageUrlKeyword,noActiveUrlKeyword,linksSelector
     var pagePathName = pageUrl.slice(hostname.length+7+sitePathLength);
     console.log(pagePathName);
 
-    if (pageUrl.indexOf(pageUrlKeyword) >= 0) {
+    if (pageUrl.indexOf(pageUrlKeyword1) >= 0 && pageUrl.indexOf(pageUrlKeyword2) >= 0) {
         var toBeActiveLinks = $(linksSelector);
         var toBeActiveLinksUrls = new Array();
         for (var i = 0; i < toBeActiveLinks.length; i++) {
@@ -248,25 +316,25 @@ function addActiveClass(sitePath,pageUrlKeyword,noActiveUrlKeyword,linksSelector
         for (var n = 0; n < toBeActiveLinks.length; n++) {
             if (toBeActiveLinksUrls[n].indexOf(pagePathName) >= 0) {
                 if (pagePathName != noActiveUrlKeyword) {
-                    // $(linksInItemSelector).removeClass("active");
+                    // $(activeItemSelector).removeClass("active");
                     switch (method) {
                         case "parents":
-                            $(linksSelector).eq(n).parents(linksInItemSelector).addClass("active");
+                            $(linksSelector).eq(n).parents(activeItemSelector).addClass("active");
                             break;
                         case "find":
-                            $(linksSelector).eq(n).find(linksInItemSelector).addClass("active");
+                            $(linksSelector).eq(n).find(activeItemSelector).addClass("active");
                             break;
                         default:
-                            $(linksSelector).eq(n).parents(linksInItemSelector).addClass("active");
+                            $(linksSelector).eq(n).parents(activeItemSelector).addClass("active");
                     }
                     break;
                 }
                 else {
-                    // $(linksInItemSelector).removeClass("active");
+                    // $(activeItemSelector).removeClass("active");
                 }
             }
             else {
-                // $(linksInItemSelector).removeClass("active");
+                // $(activeItemSelector).removeClass("active");
             }
         }
     }
