@@ -320,12 +320,15 @@ function addActiveClass(sitePath,pageUrlKeyword1,pageUrlKeyword2,noActiveUrlKeyw
                     switch (method) {
                         case "parents":
                             $(linksSelector).eq(n).parents(activeItemSelector).addClass("active");
+                            $(linksSelector).eq(n).addClass("active");
                             break;
                         case "find":
                             $(linksSelector).eq(n).find(activeItemSelector).addClass("active");
+                            $(linksSelector).eq(n).addClass("active");
                             break;
                         default:
                             $(linksSelector).eq(n).parents(activeItemSelector).addClass("active");
+                            $(linksSelector).eq(n).addClass("active");
                     }
                     break;
                 }

@@ -88,6 +88,10 @@ $(function () {
     } else if (pageUrl.indexOf("lang=ar") >= 0) {
         // $(".navbar_lang_wrapper a").removeClass("active");
         $(".lang_ar").addClass("active");
+
+        // 阿拉伯语版文字显示顺序从右往左
+        // $("html").attr("dir","rtl");
+        $(".about_icons_item_txt, .dropdown-menu>li>a, .oem_service").attr("dir","rtl");
     } else if (pageUrl.indexOf("lang=ru") >= 0) {
         // $(".navbar_lang_wrapper a").removeClass("active");
         $(".lang_ru").addClass("active");
@@ -178,10 +182,19 @@ $(function () {
     });
 
     // 案例列表页：案例分类active效果
-    addActiveClass("/","/case/img.php","class3=","/case/img.php/","li.case_cates_item a","li.case_cates_item","parents");
+    addActiveClass("/","/project-case/img.php","class","/project-case/img.php/",".case_cates_list_child a",".case_cates_item","parents");
 
     // 案例列表页：当前分类自动移动到第一个
-    $("li.case_cates_item.active").prependTo(".case_cates_list");
+    $(".case_cates_item.active").prependTo(".case_cates_list");
+
+    // 案例列表页：当前大类的子分类自动展开
+    $(".case_cates_item.active").children(".case_cates_list_child").slideDown(400);
+
+    // 案例列表页：一级分类切换效果
+    $(".case_cates_item_title").click(function () {
+        $(this).next().slideToggle(400);
+        $(this).parent().siblings().children(".case_cates_list_child").slideUp(400);
+    });
 
     // 案例列表页：手机下 more 按钮效果
     if (screenWidth < 768) {
@@ -197,6 +210,15 @@ $(function () {
                 }
             });
         }
+
+        $(".case_cates_item_title").click(function () {
+            $(".case_cates_list").removeClass("collapsed");
+            if ($(".case_cates_list").hasClass("collapsed")) {
+                $(".case_cates_more").text("MORE...");
+            } else {
+                $(".case_cates_more").text("LESS...");
+            }
+        });
     }
 
     // 新闻列表页：限制新闻封面图片显示的高度

@@ -8,19 +8,21 @@
     .swiper_slide_wrapper {
         background-size: cover;
         background-position: center;
-        height: 679px;
+        // height: 679px;
         @media (max-width: 767px) {
-            height: 200px;
-            background-position: 70%;
+            // height: 200px;
+            background-position: 85%;
         }
         @media (min-width: 768px) and (max-width: 991px) {
-            height: 350px;
+            // height: 350px;
+            background-position: 75%;
         }
         @media (min-width: 992px) and (max-width: 1199px) {
-            height: 450px;
+            // height: 450px;
+            background-position: 75%;
         }
         @media (min-width: 1200px) {
-            // background-position: 60%;
+            background-position: 85%;
         }
     }
     .swiper-pagination {
@@ -376,7 +378,7 @@
 #news_banner {
     .page_banner {
         @media (max-width: 767px) {
-            background-position: 80%;
+            background-position: 48%;
         }
         @media (min-width: 1200px) {
             background-position: 70%;
@@ -625,6 +627,13 @@
 
 // 资质与认证页面
 
+#certification_banner {
+    .page_banner {
+        @media (max-width: 767px) {
+            background-position: 65%;
+        }
+    }
+}
 .certification {
     padding: 50px 100px;
     @media (max-width: 767px) {
@@ -881,7 +890,7 @@
     overflow: hidden;
     &.collapsed {
         @media (max-width: 767px) {
-            max-height: 180px;
+            max-height: 380px;
         }
     }
 }
@@ -914,37 +923,77 @@
         font-size: 20px;
     }
 }
-li.case_cates_item {
-    border-bottom: 1px solid #ccc;
+.case_cates_item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    // border-bottom: 1px solid #ccc;
     @media (max-width: 767px) {
         float: left;
         width: 46%;
         margin-left: 2%;
         margin-right: 2%;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
-    &.active {
-        a {
-            color: #af4284;
-            font-weight: bold;
-        }
+}
+
+.case_cates_item_title {
+    color: #333333;
+    font-size: 14px;
+    display: block;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    position: relative;
+    @media (max-width: 767px) {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    &:after {
+        font-family: "FontAwesome";
+        content: "\f107";
+        position: absolute;
+        right: 5px;
+    }
+}
+.case_cates_list_child {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: none;
+    @media (max-width: 767px) {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     a {
-        color: #333333;
+        color: #888888;
         font-size: 14px;
         display: block;
         padding-top: 12px;
         padding-bottom: 12px;
-        padding-left: 5px;
+        padding-left: 20px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         position: relative;
-        &:after {
-            font-family: "FontAwesome";
-            content: "\f105";
-            position: absolute;
-            right: 5px;
+        @media (max-width: 767px) {
+            padding-top: 8px;
+            padding-bottom: 8px;
         }
+        &.active {
+            color: #af4284;
+            font-weight: bold;
+        }
+        // &:after {
+        //     font-family: "FontAwesome";
+        //     content: "\f105";
+        //     position: absolute;
+        //     right: 5px;
+        // }
     }
 }
 .case_item {
@@ -958,10 +1007,12 @@ li.case_cates_item {
 }
 .case_item_title {
     font-size: 14px;
-    color: #010101;
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
+    a {
+        color: #010101;
+    }
 }
 .case_list_pagination {
     text-align: center;
@@ -1326,6 +1377,7 @@ ul.products_detail_specs_list {
     float: left;
     width: 70%;
     padding-left: 70px;
+    min-height: 44px;
     @media (max-width: 1199px) {
         padding-left: 15px;
     }
